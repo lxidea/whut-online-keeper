@@ -1,4 +1,7 @@
 # whut-online-keeper
+
+![Apache 2.0 license](https://img.shields.io/hexpm/l/plug) ![Python3](https://img.shields.io/pypi/pyversions/P)
+
 武汉理工大学 校园网自动登录器
 当前版本 v0.1
 
