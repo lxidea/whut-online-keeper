@@ -225,7 +225,8 @@ class Login(object):
             length = 30
         strlen = len(msg)
         if strlen > length:
-            raise (Exception("msg is too long"))
+            print(msg)
+            return
         charlen = length - strlen
         charlen2 = int(charlen / 2)
         if charlen2 * 2 != charlen:
