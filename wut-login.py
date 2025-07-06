@@ -143,9 +143,22 @@ class Login(object):
             end="",
         )
         for _ in range(max_iters):
-            response = requests.get(
-                next_url, allow_redirects=False, timeout=30, proxies={}
-            )
+            try:
+                response = requests.get(
+                    next_url, allow_redirects=False, timeout=30, proxies={}
+                )
+            except Exception as e:
+                self.log_printer.verbose("Failed")
+                self.log_printer.info(self.get_current_time() + " Error:" + str(e))
+                self.log_printer.info(
+                    self.get_current_time()
+                    + " If you are using TUN-based proxy (via virtual NIC), try to disable it"
+                )
+                self.log_printer.info(
+                    self.get_current_time()
+                    + " 如果你在使用基于 TUN (虚拟网卡) 的代理，请将其关闭"
+                )
+                return
             if 300 <= response.status_code < 400:
                 next_location = response.headers.get("Location", "")
                 if next_location:
