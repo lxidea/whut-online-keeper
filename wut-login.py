@@ -455,7 +455,7 @@ class Login(object):
                     self.log_printer.verbose("Failed")
                     self.log_printer.info(
                         self.get_current_time()
-                        + " Login failed (Most probably due to wrong nasId), code: "
+                        + " Login failed, code: "
                         + str(parsed_info["code"])
                         + ", message: "
                         + parsed_info["msg"]
