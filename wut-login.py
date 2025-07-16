@@ -398,12 +398,12 @@ class Login(object):
             self.network = True
             extract_success = False
             if response.status_code == 200:
-                self.log_printer.verbose("OK", with_time=False)
                 # Extract API base path from the JavaScript file
                 pruned_raw_text = PATTERN_COMMENTS.sub("", raw_text)  # Remove comments
                 match = PATTERN_API_BASE_PATH.search(pruned_raw_text)
                 if match:
                     self.api_base_path = match.group(1).strip()
+                    self.log_printer.verbose("OK", with_time=False)
                     self.log_printer.verbose(
                         "API base path found: " + self.api_base_path
                     )
@@ -452,12 +452,12 @@ class Login(object):
                 url, headers=headers, cookies=self.cookies, timeout=5
             )
             if response.status_code == 200:
-                self.log_printer.info("OK", with_time=False)
                 self.network = True
                 try:
                     self.info = json.loads(response.text)
                     self.online = self.info["code"] == 0
                     self.login_info = self.info["online"]
+                    self.log_printer.info("OK", with_time=False)
                     if self.log_level > 0 and not self.shown:
                         self.show_login_info()
                         self.shown = True  # Show only once during the session
